@@ -3,6 +3,8 @@ plugins {
     id 'idea'
 }
 
+group 'fr.com.botpaikeaserver'
+
 repositories {
     mavenCentral()
 }
