@@ -9,4 +9,5 @@
 
 rootProject.name = 'botpaikeaserver'
 include 'ts3api'
+include 'testModule'
 

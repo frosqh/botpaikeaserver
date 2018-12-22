@@ -1,5 +1,6 @@
 plugins {
     id 'org.sonarqube' version '2.6'
+    id 'idea'
 }
 
 group = 'com.frosqh.botpaikeaserver'

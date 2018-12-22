@@ -1,13 +1,17 @@
 plugins {
     id 'java'
+    id 'idea'
 }
-
-version '0.1'
 
 repositories {
     mavenCentral()
 }
 
+test{
+    ignoreFailures = true
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'junit:junit:4.12'
+    compile group: 'com.github.theholywaffle', name: 'teamspeak3-api', version: '1.1.0'
 }
