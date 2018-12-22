@@ -12,12 +12,6 @@ allprojects {
     }
 }
 
-project.sonarqube {
-    properties {
-        properties.remove("sonar.junit.reportsPath")
-    }
-}
-
 subprojects {
     version = '0.1'
 }

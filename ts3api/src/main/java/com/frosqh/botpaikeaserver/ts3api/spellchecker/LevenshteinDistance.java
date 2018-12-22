@@ -3,8 +3,12 @@ package com.frosqh.botpaikeaserver.ts3api.spellchecker;
 public interface LevenshteinDistance {
 
     public static int getDistance(String word1, String word2){
-        Integer[] dist[] = new Integer[word1.length()][word2.length()];
-        int i,j,subCost;
+
+        Integer[][] dist = new Integer[word1.length()][word2.length()];
+        int i;
+        int j;
+        int subCost;
+
         for(i=0;i<word1.length();i++){
             dist[i][0]=i;
         }
