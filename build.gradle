@@ -12,8 +12,10 @@ allprojects {
     }
 }
 
-sonarqube {
-    sonar.junit.reportPaths = '**/build/test-results/test/TEST-*xml'
+project.sonarqube {
+    properties {
+        properties.remove("sonar.junit.reportsPath")
+    }
 }
 
 subprojects {
