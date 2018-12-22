@@ -1,6 +1,8 @@
 plugins {
     id 'java'
-    id 'application'
 }
 
-mainClassName = 'com.frosqh.botpaikeaserver.ts3api'
+dependencies {
+    compile 'junit:junit:4.12'
+}
+
