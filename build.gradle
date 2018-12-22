@@ -1,6 +1,9 @@
 plugins {
-    id "org.sonarqube" version "2.6"
+    id 'org.sonarqube' version '2.6'
 }
+
+group = 'com.frosqh.botpaikeaserver'
+version = '0.1'
 
 allprojects {
     repositories {
@@ -9,5 +12,5 @@ allprojects {
 }
 
 subprojects {
-    version = '1.0'
+    version = '0.1'
 }
