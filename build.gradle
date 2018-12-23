@@ -15,3 +15,12 @@ allprojects {
 subprojects {
     version = '0.1'
 }
+
+/*jacocoTestReport {
+    group = "Reporting"
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination "${buildDir}/reports/coverage"
+    }
+}*/
