@@ -2,71 +2,71 @@ package com.frosqh.botpaikeaserver.Locale;
 
 public interface Locale{
 
-    String PAIKEA_SONG();
+    String paikeaSong();
 
-    String WELCOME_MESSAGE();
+    String welcomeMessage();
 
-    String LIST();
+    String list();
 
-    String SEE_MORE();
+    String seeMore();
 
     // Commands Usage
 
-    String USAGE_HELP();
-    String USAGE_PAIKEA();
-    String USAGE_NEXT();
-    String USAGE_PLAY();
-    String USAGE_PAUSE();
-    String USAGE_PREV();
-    String USAGE_SETVOLUME();
-    String USAGE_TOGGLEAUTOPLAY();
-    String USAGE_INFO();
+    String usageHelp();
+    String usagePaikea();
+    String usageNext();
+    String usagePlay();
+    String usagePause();
+    String usagePrev();
+    String usageSetVolume();
+    String usageToggleAutoPlay();
+    String usageInfo();
 
     // Commands Help
 
-    String DESC_HELP();
-    String DESC_PAIKEA();
-    String DESC_NEXT();
-    String DESC_PLAY();
-    String DESC_PAUSE();
-    String DESC_PREV();
-    String DESC_SETVOLUME();
-    String DESC_TOGGLEAUTOPLAY();
-    String DESC_INFO();
+    String descHelp();
+    String descPaikea();
+    String descNext();
+    String descPlay();
+    String descPause();
+    String descPrev();
+    String descSetVolume();
+    String descToggleAutoPlay();
+    String descInfo();
 
     // Commands Results
 
-    String NOW_PLAYING(String song, String artist);
-    String NOTHING_PLAYING();
-    String SUCC_PLAY();
-    String TOGGLE_AUTOPLAY_ON();
-    String TOGGLE_AUTOPLAY_OFF();
+    String nowPlaying(String song, String artist);
+    String nothingPlaying();
+    String succPlay();
+    String toggleAutoPlayOn();
+    String toggleAutoPlayOff();
 
     // Other
 
-    String DID_YOU_MEAN();
+    String didYouMean(String arg, String almost);
 
     //Errors
 
-    String ERROR_PAUSE();
-    String ERROR_ON_PLAY();
-    String ERROR_PLAY();
-    String NOT_FOUND(String cmd);
-    String UNDEFINED_BEHAVIOR();
-    String EASTER_UNDEFINED_BEHAVIOR();
-    String WIP();
-    String NO_PREV();
+    String errorPause();
+    String errorOnPlay();
+    String errorPlay();
+    String notFound(String cmd);
+    String undefinedBehavior();
+    String easterUndefinedBehavior();
+    String wip();
+    String noPrev();
 
     // Easters input
 
-    String EASTER_SHIT();
+    String easterShit();
 
     //Easters output
 
-    String EASTER_SHIT_RESPONSE();
-    String EASTER_GOOGLE_RESPONSE();
-    String EASTER_NO_RESPONSE();
-    String EASTER_PLOP_RESPONSE();
+    String easterShitResponse();
+    String easterGoogleResponse();
+    String easterNoResponse();
+    String easterPlopResponse();
 
 
 
