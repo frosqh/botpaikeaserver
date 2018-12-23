@@ -1,6 +1,6 @@
 package com.frosqh.botpaikeaserver.ts3api;
 
-import com.frosqh.botpaikeaserver.Locale.FR_FR;
+import com.frosqh.botpaikeaserver.locale.FR_FR;
 
 public class Ts3Api {
     public static void main(String[] args){

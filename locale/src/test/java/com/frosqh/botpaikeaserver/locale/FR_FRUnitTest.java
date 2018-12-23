@@ -1,4 +1,4 @@
-package com.frosqh.botpaikeaserver.Locale;
+package com.frosqh.botpaikeaserver.locale;
 
 import org.junit.Assert;
 import org.junit.Test;

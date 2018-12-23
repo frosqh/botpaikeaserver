@@ -9,5 +9,5 @@
 
 rootProject.name = 'botpaikeaserver'
 include 'ts3api'
-include 'Locale'
+include 'locale'
 

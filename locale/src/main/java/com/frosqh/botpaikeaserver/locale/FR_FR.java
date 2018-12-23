@@ -1,4 +1,4 @@
-package com.frosqh.botpaikeaserver.Locale;
+package com.frosqh.botpaikeaserver.locale;
 
 public class FR_FR implements Locale {
     @Override
