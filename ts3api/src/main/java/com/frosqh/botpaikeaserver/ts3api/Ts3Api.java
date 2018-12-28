@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ts3Api {
-    private TS3Api ts3Api;
+    private TS3Api api;
     private List<String> knownUsers;
     private Locale locale;
     private CommandManager commandManager;
@@ -32,27 +32,27 @@ public class Ts3Api {
         TS3Query ts3Query = new TS3Query(ts3Config);
         ts3Query.connect();
         // Creating API and initializing query
-        ts3Api = ts3Query.getApi();
-        ts3Api.login(login,password);
-        ts3Api.selectVirtualServerById(1);
-        ts3Api.setNickname(botName);
+        api = ts3Query.getApi();
+        api.login(login,password);
+        api.selectVirtualServerById(1);
+        api.setNickname(botName);
 
         goToRightChannel();
 
-        final int clientId = ts3Api.whoAmI().getId();
+        final int clientId = api.whoAmI().getId();
 
-        ts3Api.registerEvent(TS3EventType.TEXT_CHANNEL);
-        ts3Api.registerEvent(TS3EventType.TEXT_PRIVATE);
-        ts3Api.addTS3Listeners(new OnReceiveListener(clientId));
+        api.registerEvent(TS3EventType.TEXT_CHANNEL);
+        api.registerEvent(TS3EventType.TEXT_PRIVATE);
+        api.addTS3Listeners(new OnReceiveListener(clientId));
 
         welcomeAll();
     }
 
     private void goToRightChannel(){
         for (String user : knownUsers){
-            Client tsClient = ts3Api.getClientByNameExact(user, true);
-            if (tsClient != null && ts3Api.whoAmI().getChannelId() != tsClient.getChannelId()){
-                ts3Api.moveQuery(tsClient.getChannelId());
+            Client tsClient = api.getClientByNameExact(user, true);
+            if (tsClient != null && api.whoAmI().getChannelId() != tsClient.getChannelId()){
+                api.moveQuery(tsClient.getChannelId());
                 return;
             }
         }
@@ -60,9 +60,9 @@ public class Ts3Api {
 
     private void welcomeAll(){
         for (String user : knownUsers){
-            Client tsClient = ts3Api.getClientByNameExact(user, true);
+            Client tsClient = api.getClientByNameExact(user, true);
             if (tsClient != null && !tsClient.isOutputMuted() && !tsClient.isAway()){
-                ts3Api.sendPrivateMessage(tsClient.getId(),locale.welcomeMessage());
+                api.sendPrivateMessage(tsClient.getId(),locale.welcomeMessage());
             }
         }
     }
@@ -94,9 +94,9 @@ public class Ts3Api {
                 }
 
                 if (ans != null){
-                    ts3Api.sendPrivateMessage(id, ans);
+                    api.sendPrivateMessage(id, ans);
                 } else {
-                    ts3Api.sendPrivateMessage(id, locale.notFound(command));
+                    api.sendPrivateMessage(id, locale.notFound(command));
                 }
             }
         }
