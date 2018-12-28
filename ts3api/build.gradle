@@ -14,6 +14,10 @@ test{
     ignoreFailures = true
 }
 
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'
+
 dependencies {
     compile 'junit:junit:4.12'
     compile group: 'com.github.theholywaffle', name: 'teamspeak3-api', version: '1.1.0'
