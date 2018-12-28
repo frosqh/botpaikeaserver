@@ -203,4 +203,35 @@ public class FRFRUnitTest {
     public void easterPlopResponseTest(){
         Assert.assertEquals("Plop à toi, mon frère !", fr.easterPlopResponse());
     }
+
+    @Test
+    public void errorPlayTest(){
+        Assert.assertEquals("Ça joue déjà, réfléchis un peu ><",fr.errorPlay());
+    }
+
+    @Test
+    public void usagePaikeaTest(){
+        Assert.assertEquals("Usage : !paikea",fr.usagePaikea());
+    }
+
+    @Test
+    public void paikeaSongTest(){
+        Assert.assertEquals("\"\\n\" +\n" +
+                "            \"Uia mai koia, whakahuatia ake; \\n\" +\n" +
+                "            \"Ko wai te whare nei e?\\n\" +\n" +
+                "            \"Ko Te Kani / Ko Rangi / Whitireia! \\n\" +\n" +
+                "            \"Ko wai te tekoteko kei runga? \\n\" +\n" +
+                "            \"Ko Paikea! Ko Paikea! \\n\" +\n" +
+                "            \"Whakakau Paikea. Hei! \\n\" +\n" +
+                "            \"Whakakau he tipua. Hei! \\n\" +\n" +
+                "            \"Whakakau he taniwha. Hei! \\n\" +\n" +
+                "            \"Ka ū Paikea ki Ahuahu. Pakia! \\n\" +\n" +
+                "            \"Kei te whitia koe \\n\" +\n" +
+                "            \"ko Kahutia-te-rangi. Aue! \\n\" +\n" +
+                "            \"Me ai tō ure ki te tamahine \\n\" +\n" +
+                "            \"a Te Whironui - aue! -\\n\" +\n" +
+                "            \"nāna i noho te Roto-o-tahe. \\n\" +\n" +
+                "            \"Aue! Aue! \\n\" +\n" +
+                "            \"He koruru koe, koro e.\"",fr.paikeaSong());
+    }
 }
