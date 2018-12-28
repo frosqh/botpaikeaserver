@@ -2,6 +2,12 @@ package com.frosqh.botpaikeaserver.ts3api.spellchecker;
 
 public interface LevenshteinDistance {
 
+    /**
+     * Calculate the Levenshtein Distance between words
+     * @param word1 Initial word
+     * @param word2 Final word
+     * @return Number of letters to swap/add/remove to go from word1 to word2
+     */
     public static int getDistance(String word1, String word2){
 
         Integer[][] dist = new Integer[word1.length()][word2.length()];
