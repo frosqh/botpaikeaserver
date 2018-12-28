@@ -1,9 +1,9 @@
 package com.frosqh.botpaikeaserver.ts3api;
 
-import com.frosqh.botpaikeaserver.locale.FR_FR;
+import com.frosqh.botpaikeaserver.locale.FRFR;
 
 public class Ts3Api {
     public static void main(String[] args){
-        System.out.println(new FR_FR().descNext());
+        System.out.println(new FRFR().descNext());
     }
 }

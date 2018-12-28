@@ -1,6 +1,6 @@
 package com.frosqh.botpaikeaserver.locale;
 
-public class FR_FR implements Locale {
+public class FRFR implements Locale {
     @Override
     public String paikeaSong() {
         return null;
@@ -13,7 +13,7 @@ public class FR_FR implements Locale {
 
     @Override
     public String list() {
-        return "Voici la liste de commandes disponibles : \n";
+        return "Voici la liste des commandes disponibles : \n";
     }
 
     @Override
@@ -73,7 +73,7 @@ public class FR_FR implements Locale {
 
     @Override
     public String descPaikea() {
-        return "Suprise !";
+        return "Surprise !";
     }
 
     @Override
