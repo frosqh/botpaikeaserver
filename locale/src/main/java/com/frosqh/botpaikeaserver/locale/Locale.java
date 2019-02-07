@@ -2,7 +2,7 @@ package com.frosqh.botpaikeaserver.locale;
 
 public interface Locale{
 
-    String paikeaSong();
+    String paikeSong();
 
     String welcomeMessage();
 
@@ -12,27 +12,27 @@ public interface Locale{
 
     // Commands Usage
 
-    String usageHelp();
-    String usagePaikea();
-    String usageNext();
-    String usagePlay();
-    String usagePause();
-    String usagePrev();
-    String usageSetVolume();
+    String usagehelp();
+    String usagepaikea();
+    String usagenext();
+    String usageplay();
+    String usagepause();
+    String usageprev();
+    String usagesetvolume();
     String usageToggleAutoPlay();
     String usageInfo();
 
     // Commands Help
 
-    String descHelp();
-    String descPaikea();
-    String descNext();
-    String descPlay();
-    String descPause();
-    String descPrev();
-    String descSetVolume();
-    String descToggleAutoPlay();
-    String descInfo();
+    String deschelp();
+    String descpaikea();
+    String descnext();
+    String descplay();
+    String descpause();
+    String descprev();
+    String descsetvolume();
+    String desctoggleautoplay();
+    String descinfo();
 
     // Commands Results
 

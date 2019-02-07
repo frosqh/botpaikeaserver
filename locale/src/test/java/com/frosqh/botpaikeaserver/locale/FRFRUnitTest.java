@@ -2,7 +2,6 @@ package com.frosqh.botpaikeaserver.locale;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class FRFRUnitTest {
@@ -31,32 +30,32 @@ public class FRFRUnitTest {
 
     @Test
     public void usageHelpTest(){
-        Assert.assertEquals("Usage : !help [cmd]",fr.usageHelp());
+        Assert.assertEquals("Usage : !help [cmd]",fr.usagehelp());
     }
 
     @Test
     public void usageNextTest(){
-        Assert.assertEquals("Usage : !next",fr.usageNext());
+        Assert.assertEquals("Usage : !next",fr.usagenext());
     }
 
     @Test
     public void usagePlayTest(){
-        Assert.assertEquals("Usage : !play",fr.usagePlay());
+        Assert.assertEquals("Usage : !play",fr.usageplay());
     }
 
     @Test
     public void usagePauseTest(){
-        Assert.assertEquals("Usage : !pause",fr.usagePause());
+        Assert.assertEquals("Usage : !pause",fr.usagepause());
     }
 
     @Test
     public void usagePrevTest(){
-        Assert.assertEquals("Usage : !prev",fr.usagePrev());
+        Assert.assertEquals("Usage : !prev",fr.usageprev());
     }
 
     @Test
     public void usageSetVolumeTest(){
-        Assert.assertEquals("Usage : !setVolume [volume]",fr.usageSetVolume());
+        Assert.assertEquals("Usage : !setVolume [volume]",fr.usagesetvolume());
     }
 
     @Test
@@ -71,47 +70,47 @@ public class FRFRUnitTest {
 
     @Test
     public void descHelpTest(){
-        Assert.assertEquals("Affiche ce message d'aide", fr.descHelp());
+        Assert.assertEquals("Affiche ce message d'aide", fr.deschelp());
     }
 
     @Test
     public void descPaikeaTest(){
-        Assert.assertEquals("Surprise !",fr.descPaikea());
+        Assert.assertEquals("Surprise !",fr.descpaikea());
     }
 
     @Test
     public void descNextTest(){
-        Assert.assertEquals("Lit la prochaine musique dans la liste d'attente",fr.descNext());
+        Assert.assertEquals("Lit la prochaine musique dans la liste d'attente",fr.descnext());
     }
 
     @Test
     public void descPlayTest(){
-        Assert.assertEquals("Sort le lecteur de l'état 'Pause'",fr.descPlay());
+        Assert.assertEquals("Sort le lecteur de l'état 'Pause'",fr.descplay());
     }
 
     @Test
     public void descPauseTest(){
-        Assert.assertEquals("Met le lecteur dans l'état 'Pause'", fr.descPause());
+        Assert.assertEquals("Met le lecteur dans l'état 'Pause'", fr.descpause());
     }
 
     @Test
     public void descPrevTest(){
-        Assert.assertEquals("Revient à la dernière musique jouée",fr.descPrev());
+        Assert.assertEquals("Revient à la dernière musique jouée",fr.descprev());
     }
 
     @Test
     public void descSetVolumeTest(){
-        Assert.assertEquals("Change le volume du lecteur", fr.descSetVolume());
+        Assert.assertEquals("Change le volume du lecteur", fr.descsetvolume());
     }
 
     @Test
     public void descToggleAutoPlayTest(){
-        Assert.assertEquals("(Dés)Active la lecture automatique", fr.descToggleAutoPlay());
+        Assert.assertEquals("(Dés)Active la lecture automatique", fr.desctoggleautoplay());
     }
 
     @Test
     public void descInfoTest(){
-        Assert.assertEquals("Affiche la musique en cours",fr.descInfo());
+        Assert.assertEquals("Affiche la musique en cours",fr.descinfo());
     }
 
     @Test
@@ -211,7 +210,7 @@ public class FRFRUnitTest {
 
     @Test
     public void usagePaikeaTest(){
-        Assert.assertEquals("Usage : !paikea",fr.usagePaikea());
+        Assert.assertEquals("Usage : !paikea",fr.usagepaikea());
     }
 
     @Test
@@ -232,6 +231,6 @@ public class FRFRUnitTest {
                 "            \"a Te Whironui - aue! -\\n\" +\n" +
                 "            \"nāna i noho te Roto-o-tahe. \\n\" +\n" +
                 "            \"Aue! Aue! \\n\" +\n" +
-                "            \"He koruru koe, koro e.\"",fr.paikeaSong());
+                "            \"He koruru koe, koro e.\"",fr.paikeSong());
     }
 }

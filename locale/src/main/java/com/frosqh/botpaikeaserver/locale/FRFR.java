@@ -2,7 +2,7 @@ package com.frosqh.botpaikeaserver.locale;
 
 public class FRFR implements Locale {
     @Override
-    public String paikeaSong() {
+    public String paikeSong() {
         return "\"\\n\" +\n" +
                 "            \"Uia mai koia, whakahuatia ake; \\n\" +\n" +
                 "            \"Ko wai te whare nei e?\\n\" +\n" +
@@ -38,37 +38,37 @@ public class FRFR implements Locale {
     }
 
     @Override
-    public String usageHelp() {
+    public String usagehelp() {
         return "Usage : !help [cmd]";
     }
 
     @Override
-    public String usagePaikea() {
+    public String usagepaikea() {
         return "Usage : !paikea";
     }
 
     @Override
-    public String usageNext() {
+    public String usagenext() {
         return "Usage : !next";
     }
 
     @Override
-    public String usagePlay() {
+    public String usageplay() {
         return "Usage : !play";
     }
 
     @Override
-    public String usagePause() {
+    public String usagepause() {
         return "Usage : !pause";
     }
 
     @Override
-    public String usagePrev() {
+    public String usageprev() {
         return "Usage : !prev";
     }
 
     @Override
-    public String usageSetVolume() {
+    public String usagesetvolume() {
         return "Usage : !setVolume [volume]";
     }
 
@@ -83,47 +83,47 @@ public class FRFR implements Locale {
     }
 
     @Override
-    public String descHelp() {
+    public String deschelp() {
         return "Affiche ce message d'aide";
     }
 
     @Override
-    public String descPaikea() {
+    public String descpaikea() {
         return "Surprise !";
     }
 
     @Override
-    public String descNext() {
+    public String descnext() {
         return "Lit la prochaine musique dans la liste d'attente";
     }
 
     @Override
-    public String descPlay() {
+    public String descplay() {
         return "Sort le lecteur de l'état 'Pause'";
     }
 
     @Override
-    public String descPause() {
+    public String descpause() {
         return "Met le lecteur dans l'état 'Pause'";
     }
 
     @Override
-    public String descPrev() {
+    public String descprev() {
         return  "Revient à la dernière musique jouée";
     }
 
     @Override
-    public String descSetVolume() {
+    public String descsetvolume() {
         return "Change le volume du lecteur";
     }
 
     @Override
-    public String descToggleAutoPlay() {
+    public String desctoggleautoplay() {
         return "(Dés)Active la lecture automatique";
     }
 
     @Override
-    public String descInfo() {
+    public String descinfo() {
         return "Affiche la musique en cours";
     }
 

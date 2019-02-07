@@ -4,6 +4,7 @@ import com.frosqh.botpaikeaserver.locale.Locale;
 import com.frosqh.botpaikeaserver.ts3api.exception.NotACommandException;
 import com.frosqh.botpaikeaserver.ts3api.spellchecker.LevenshteinDistance;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 public class CommandManager {
@@ -84,6 +85,8 @@ public class CommandManager {
                 return "Ping ?";
             case "ping":
                 return "Pong !";
+            case "plop":
+                return locale.easterPlopResponse();
             default:
                 if (locale.easterShit().equals(cmd))
                     return locale.easterShitResponse();
@@ -92,13 +95,55 @@ public class CommandManager {
     }
 
     public String execBase(String command) {
+        String rep = "default";
         try {
             String cmd = preProcess(command);
+            switch (cmd){
+                case "help":
+                    rep = locale.list();
+                    for (String com : baseCommands){
+                        String desc = (String) locale.getClass().getDeclaredMethod("desc"+com.toLowerCase(),null).invoke(locale,null);
+                        rep+="\t\t• !"+com+" : "+desc+"\n";
+                    }
+                    for (String com : complexCommands){
+                        String desc = (String) locale.getClass().getDeclaredMethod("desc"+com.toLowerCase(),null).invoke(locale,null);
+                        rep+="\t\t• !"+com+" : "+desc+"\n";
+                    }
+                    rep+=locale.seeMore();
+                    break;
+                case "paikea":
+                    rep = locale.paikeSong();
+                    break;
+                case "next":
+                    rep = locale.undefinedBehavior();
+                    break;
+                case "prev":
+                    rep = locale.undefinedBehavior();
+                    break;
+                case "pause":
+                    rep = locale.undefinedBehavior();
+                    break;
+                case "play":
+                    rep = locale.undefinedBehavior();
+                    break;
+                case "info":
+                    rep = locale.undefinedBehavior();
+                    break;
+                default:
+                    rep = locale.undefinedBehavior();
+                    break;
+            }
         } catch (NotACommandException ignored) {
             return "‼"; //Should not happend and be checked before !
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
         }
         //TODO Lier au serveur audio dès que celui-ci sera réalisé.
-        return "Hey !";
+        return rep;
     }
 
     public String execComplex(String command) {

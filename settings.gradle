@@ -12,4 +12,6 @@ include 'ts3api'
 include 'locale'
 include 'player'
 include 'models'
+include 'database'
+include 'file_explorer'
 

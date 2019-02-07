@@ -12,8 +12,7 @@ import com.github.theholywaffle.teamspeak3.api.event.TS3EventType;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ts3Api {
@@ -69,7 +68,7 @@ public class Ts3Api {
     }
 
     public static void main(String[] args){
-        new Ts3Api("harinman.ddns.net","BotPaikea","d9DmuZnq","Bot Paikea",new ArrayList<String>(Collections.singleton("frosqh")),new FRFR());
+        new Ts3Api("harinman.ddns.net","BotPaikea","d9DmuZnq","Bot Paikea", Arrays.asList("frosqh"),new FRFR());
     }
 
     private class OnReceiveListener extends TS3EventAdapter {
@@ -82,7 +81,10 @@ public class Ts3Api {
         @Override
         public void onTextMessage(TextMessageEvent e){
             if (e.getTargetMode()== TextMessageTargetMode.CHANNEL && e.getInvokerId()!=selfID){
-                //Channel message, check for !invoke
+                int id = e.getInvokerId();
+                String command = e.getMessage().toLowerCase();
+                if ("!invoke".equals(command))
+                    api.sendPrivateMessage(id,locale.welcomeMessage());
             }
             if (e.getTargetMode() == TextMessageTargetMode.CLIENT && e.getInvokerId()!=selfID){
                 int id = e.getInvokerId();

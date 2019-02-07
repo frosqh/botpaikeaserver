@@ -19,4 +19,17 @@ public class Song extends AbstractModel{
     public String toString(){
         return artist+" - "+title;
     }
+
+    public String getTitle() {
+        return title;
+    }
+    public String getArtist() {
+        return artist;
+    }
+    public String getLocalurl() {
+        return localurl;
+    }
+    public String getWeburl() {
+        return weburl;
+    }
 }
