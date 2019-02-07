@@ -10,4 +10,6 @@
 rootProject.name = 'botpaikeaserver'
 include 'ts3api'
 include 'locale'
+include 'player'
+include 'models'
 

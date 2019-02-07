@@ -2,6 +2,7 @@ package com.frosqh.botpaikeaserver.ts3api;
 
 import com.frosqh.botpaikeaserver.locale.FRFR;
 import com.frosqh.botpaikeaserver.locale.Locale;
+import com.frosqh.botpaikeaserver.ts3api.exception.NotACommandException;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Config;
 import com.github.theholywaffle.teamspeak3.TS3Query;
@@ -89,9 +90,17 @@ public class Ts3Api {
                 String[] args = command.split(" ");
                 String ans = null;
 
-                if (commandManager.isEaster(command)){
-                    ans = "Oui, c'est bien un easter que tu as là ! :P";
+                if (commandManager.isEaster(command))
+                    ans = commandManager.execEaster(command);
+                else {
+                    try {
+                        if (commandManager.isBase(command) ||args[0].equals("!help")&&args.length<2)
+                            ans=commandManager.execBase(command);
+                        else if (commandManager.isComplex(command))
+                            ans = commandManager.execComplex(command);
+                    } catch (NotACommandException ignored) {}
                 }
+
 
                 if (ans != null){
                     api.sendPrivateMessage(id, ans);

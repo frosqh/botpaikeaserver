@@ -16,7 +16,10 @@ public class CommandManager {
 
     private Locale locale;
 
+    private final CommandHistory commandHistory;
+
     public CommandManager(Locale locale){
+        this.commandHistory = new CommandHistory();
         this.locale = locale;
         baseCommands = new String[]{"paikea", "next", "play", "pause", "prev", "toggleautoplay", "info"};
         easterEggs =  new String[]{this.locale.easterShit(),"ok google", "><", "nan", "no", "nope", "nan", "niet", "nein", "pong", "ping", "plop"};
@@ -62,5 +65,45 @@ public class CommandManager {
 
     public String getUsage(String cmd){
         return "Usage";
+    }
+
+    public String execEaster(String cmd){
+        switch(cmd){
+            case "ok google":
+                return locale.easterGoogleResponse();
+            case "><":
+                return ":D";
+            case "nan":
+            case "nope":
+            case "no":
+            case "niet":
+            case "non":
+            case "nein":
+                return locale.easterNoResponse();
+            case "pong":
+                return "Ping ?";
+            case "ping":
+                return "Pong !";
+            default:
+                if (locale.easterShit().equals(cmd))
+                    return locale.easterShitResponse();
+                return locale.easterUndefinedBehavior();
+        }
+    }
+
+    public String execBase(String command) {
+        try {
+            String cmd = preProcess(command);
+        } catch (NotACommandException ignored) {} //Should not happend and be checked before !
+        //TODO Lier au serveur audio dès que celui-ci sera réalisé.
+        return "Hey !";
+    }
+
+    public String execComplex(String command) {
+        try {
+            String cmd = preProcess(command);
+        } catch (NotACommandException ignored) {}
+        //TODO Lier au serveur audio dès que possible (aussi faire !help, mais la flemme quoi :D)
+        return "Complex !";
     }
 }
