@@ -94,7 +94,9 @@ public class CommandManager {
     public String execBase(String command) {
         try {
             String cmd = preProcess(command);
-        } catch (NotACommandException ignored) {} //Should not happend and be checked before !
+        } catch (NotACommandException ignored) {
+            return "‼"; //Should not happend and be checked before !
+        }
         //TODO Lier au serveur audio dès que celui-ci sera réalisé.
         return "Hey !";
     }
@@ -102,7 +104,9 @@ public class CommandManager {
     public String execComplex(String command) {
         try {
             String cmd = preProcess(command);
-        } catch (NotACommandException ignored) {}
+        } catch (NotACommandException ignored) {
+            return "‼"; //Should not happend and be checked before !
+        }
         //TODO Lier au serveur audio dès que possible (aussi faire !help, mais la flemme quoi :D)
         return "Complex !";
     }

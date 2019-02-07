@@ -6,9 +6,9 @@ import java.util.List;
 public class CommandHistory {
 
     private class CommandEntry{
-        public String command;
-        public String user;
-        public String[] params;
+        private String command;
+        private String user;
+        private String[] params;
 
         public CommandEntry(String command, String user, String... params){
             this.command = command;

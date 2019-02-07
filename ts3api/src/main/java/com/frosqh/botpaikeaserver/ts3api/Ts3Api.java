@@ -98,11 +98,13 @@ public class Ts3Api {
                             ans=commandManager.execBase(command);
                         else if (commandManager.isComplex(command))
                             ans = commandManager.execComplex(command);
-                    } catch (NotACommandException ignored) {}
+                    } catch (NotACommandException ignored) {
+                        ans = "‼";
+                    }
                 }
 
 
-                if (ans != null){
+                if (!"‼".equals(ans)){
                     api.sendPrivateMessage(id, ans);
                 } else {
                     api.sendPrivateMessage(id, locale.notFound(command));
