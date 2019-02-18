@@ -123,7 +123,7 @@ public class DataBase {
                 }
             }
             LocalDateTime then = LocalDateTime.now();
-            System.out.println("Chargement des chanson : \n" + ChronoUnit.SECONDS.between(now,then) + "s");
+            System.out.println("Chargement des chansons : \n" + ChronoUnit.SECONDS.between(now,then) + "s");
         }
     }
 }

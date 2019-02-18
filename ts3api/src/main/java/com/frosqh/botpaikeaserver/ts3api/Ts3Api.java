@@ -334,7 +334,7 @@ public class Ts3Api {
         }
         System.out.println(res);
         api.sendChannelMessage(res);
-    }
+    } //TODO .replace(" ","[color=white]\[/color]")
 
 
     public void changeName(Song song){
