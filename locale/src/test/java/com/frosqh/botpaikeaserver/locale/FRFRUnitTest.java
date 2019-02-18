@@ -59,16 +59,6 @@ public class FRFRUnitTest {
     }
 
     @Test
-    public void usageToggleAutoPlayTest(){
-        Assert.assertEquals("Usage : !toggleAutoPlay", fr.usageToggleAutoPlay());
-    }
-
-    @Test
-    public void usageInfoTest(){
-        Assert.assertEquals("Usage : !info", fr.usageInfo());
-    }
-
-    @Test
     public void descHelpTest(){
         Assert.assertEquals("Affiche ce message d'aide", fr.deschelp());
     }
