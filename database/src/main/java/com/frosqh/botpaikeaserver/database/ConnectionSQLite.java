@@ -8,7 +8,7 @@ public class ConnectionSQLite {
 
     private static String filename = "BotPaikea.db";
 
-    private static String url = "jdbc:sqlite";
+    private static String url = "jdbc:sqlite:";
 
     private static Connection connect;
 
@@ -16,12 +16,14 @@ public class ConnectionSQLite {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (ClassNotFoundException e){
+            e.printStackTrace();
             //TODO HandleError
         }
         if (connect == null) {
             try {
                 connect = DriverManager.getConnection(url+filename);
             } catch (SQLException e) {
+                e.printStackTrace();
                 //TODO HandleError
             }
         }

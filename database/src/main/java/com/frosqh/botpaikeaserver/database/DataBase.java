@@ -1,9 +1,17 @@
 package com.frosqh.botpaikeaserver.database;
 
+import com.frosqh.botpaikeaserver.models.Song;
+import com.frosqh.botpaikeaserver.settings.Settings;
+import com.frosqh.botpaikeaserver.file_explorer.DiskFileExplorer;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DataBase {
 
@@ -25,13 +33,12 @@ public class DataBase {
             + "FOREIGN KEY (creator_id) REFERENCES user(id)";
 
     private static final String TABLE_SONGBYPLAYLIST = "song_id INTEGER NOT NULL,\n"
-            + "song_id INTEGER NOT NULL,\n"
             + "playlist_id INTEGER NOT NULL,\n"
             + "FOREIGN KEY (song_id) REFERENCES song(id),\n"
             + "FOREIGN KEY (playlist_id) REFERENCES playlist(id)";
 
     public DataBase(){
-        File db = new File("settings.database"); //TODO Replace by Settings
+        File db = new File(Settings.getInstance().get("database")); //TODO Replace by Settings
         if (!db.exists()){
             Connection connect = ConnectionSQLite.getInstance();
 
@@ -80,7 +87,43 @@ public class DataBase {
     }
 
     private String createTable(String name, String Table){
-        return "CREATE TABLE IF NOT EXISTS" + name + "(\n"
+        return "CREATE TABLE IF NOT EXISTS " + name + "(\n"
+                +"id INTEGER PRIMARY KEY, \n"
                 + Table + "\n);";
+    }
+
+    public void refreshSongs(){
+        String[] files = Settings.getInstance().get("dirs").split(";");
+        SongDAO songDAO =  new SongDAO();
+        for (String f : files){
+            DiskFileExplorer dfe = new DiskFileExplorer(f, true);
+            List<Song> songs = songDAO.getList();
+            List<String> paths = dfe.list();
+
+            for (Song s : songs){
+                String URL1 = s.getLocalurl();
+                String URL = URL1.replace(f,"");
+                URL = URL.substring(1);
+                if (!paths.contains(URL)) songDAO.delete(s);
+                else paths.remove(URL);
+            }
+
+            LocalDateTime now = LocalDateTime.now();
+            if (paths.size()>0){
+                for (String p : paths){
+                    if (p.contains("_-_")) {
+                        String s = p.substring(p.indexOf("_-_")+3).replace("_"," ");
+                        String t = p.substring(0,p.indexOf("_-_")).replace("_"," ");
+                        Song temp = new Song(-1, s, t, f+"\\"+p,null);
+                        songDAO.create(temp);
+                    } else {
+                        Song temp = new Song(-1, p, "unknown", f+"\\"+p,null);
+                        songDAO.create(temp);
+                    }
+                }
+            }
+            LocalDateTime then = LocalDateTime.now();
+            System.out.println("Chargement des chanson : \n" + ChronoUnit.SECONDS.between(now,then) + "s");
+        }
     }
 }

@@ -6,12 +6,24 @@ plugins {
 
 group 'fr.com.botpaikeaserver'
 
+version '0.1.2'
+
 repositories {
     mavenCentral()
 }
 
 test{
     ignoreFailures = true
+}
+
+task fatJarServer(type: Jar){
+    manifest {
+        attributes 'Implementation-Title': 'BotPaikeaServer',
+                'Main-Class': 'com.frosqh.botpaikeaserver.ts3api.Ts3Api'
+    }
+    baseName = 'botpaikeaserver'
+    from {configurations.compile.collect {it.isDirectory() ? it:zipTree(it)}}
+    with jar
 }
 
 compileJava.options.encoding = 'UTF-8'
@@ -22,4 +34,7 @@ dependencies {
     compile 'junit:junit:4.12'
     compile group: 'com.github.theholywaffle', name: 'teamspeak3-api', version: '1.1.0'
     compile project(':locale')
+    compile project(':player')
+    compile project(':settings')
+    compile project(':database')
 }

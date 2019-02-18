@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.frosqh.botpaikeaserver'
-version = '0.1'
+version = '0.1.2'
 
 allprojects {
     repositories {
@@ -13,14 +13,5 @@ allprojects {
 }
 
 subprojects {
-    version = '0.1'
+    version = '0.1.2'
 }
-
-/*jacocoTestReport {
-    group = "Reporting"
-    reports {
-        xml.enabled true
-        csv.enabled false
-        html.destination "${buildDir}/reports/coverage"
-    }
-}*/

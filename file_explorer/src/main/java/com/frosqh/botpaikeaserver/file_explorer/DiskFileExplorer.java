@@ -16,6 +16,10 @@ public class DiskFileExplorer {
         recursivePath = subFolder;
     }
 
+    public List<String> list(){
+        return listDirectory(initialPath);
+    }
+
     private List<String> listDirectory(String dir){
         List<String> s = new ArrayList<>();
         String ext;
@@ -28,15 +32,11 @@ public class DiskFileExplorer {
             int extIndex = fileName.lastIndexOf(".");
             if (extIndex>0)
                 ext = fileName.substring(extIndex+1);
-            if (authExt.contains("ext"))
+            if (authExt.contains(ext))
                 s.add(fileName);
             if (f.isDirectory() && recursivePath)
                 s.addAll(listDirectory(f.getAbsolutePath()));
         }
         return s;
-    }
-
-    public void refreshDataBase() {
-
     }
 }

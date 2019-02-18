@@ -15,4 +15,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'org.xerial:sqlite-jdbc:3.7.2'
     compile project(':models')
+    compile project(':settings')
+    compile project(':file_explorer')
 }

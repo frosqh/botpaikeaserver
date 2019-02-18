@@ -73,13 +73,18 @@ public class FRFR implements Locale {
     }
 
     @Override
-    public String usageToggleAutoPlay() {
+    public String usagetoggleautoplay() {
         return "Usage : !toggleAutoPlay";
     }
 
     @Override
-    public String usageInfo() {
+    public String usageinfo() {
         return "Usage : !info";
+    }
+
+    @Override
+    public String usagechallenge() {
+        return "Usage : !challenge [user]";
     }
 
     @Override
@@ -128,6 +133,11 @@ public class FRFR implements Locale {
     }
 
     @Override
+    public String descchallenge() {
+        return "Défie l'utilisateur passé en paramètre au chifoumi";
+    }
+
+    @Override
     public String nowPlaying(String song, String artist) {
         return  "♫ Now playing - "+song+" by " + artist + " ♫";
     }
@@ -150,6 +160,26 @@ public class FRFR implements Locale {
     @Override
     public String toggleAutoPlayOff() {
         return "La lecture automatique est désactivée";
+    }
+
+    @Override
+    public String challengeAnnounce(String challenger, String challengee) {
+        return "Bonjour "+challengee+", "+challenger+" te défie à une partie de chifoumi. Réponds moi dans le chat privé pour participer.";
+    }
+
+    @Override
+    public String challengeChoice() {
+        return "Que veux-tu jouer ? \n Papier : 1 \n Pierre : 2 \n Ciseaux : 3";
+    }
+
+    @Override
+    public String challengeAsking() {
+        return "Veux-tu accepter le défi chifoumi ? (y/n)";
+    }
+
+    @Override
+    public String challengeAbort() {
+        return "L'autre participant n'a malheureusement pas accepté le challenge.";
     }
 
     @Override

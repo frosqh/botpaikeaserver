@@ -19,8 +19,9 @@ public interface Locale{
     String usagepause();
     String usageprev();
     String usagesetvolume();
-    String usageToggleAutoPlay();
-    String usageInfo();
+    String usagetoggleautoplay();
+    String usageinfo();
+    String usagechallenge();
 
     // Commands Help
 
@@ -33,6 +34,7 @@ public interface Locale{
     String descsetvolume();
     String desctoggleautoplay();
     String descinfo();
+    String descchallenge();
 
     // Commands Results
 
@@ -41,6 +43,10 @@ public interface Locale{
     String succPlay();
     String toggleAutoPlayOn();
     String toggleAutoPlayOff();
+    String challengeAnnounce(String challenger, String challengee);
+    String challengeChoice();
+    String challengeAsking();
+    String challengeAbort();
 
     // Other
 

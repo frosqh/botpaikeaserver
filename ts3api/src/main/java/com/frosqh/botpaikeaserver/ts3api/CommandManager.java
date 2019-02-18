@@ -1,6 +1,10 @@
 package com.frosqh.botpaikeaserver.ts3api;
 
 import com.frosqh.botpaikeaserver.locale.Locale;
+import com.frosqh.botpaikeaserver.player.Player;
+import com.frosqh.botpaikeaserver.player.exceptions.EmptyHistoryException;
+import com.frosqh.botpaikeaserver.player.exceptions.PauseException;
+import com.frosqh.botpaikeaserver.player.exceptions.PlayException;
 import com.frosqh.botpaikeaserver.ts3api.exception.NotACommandException;
 import com.frosqh.botpaikeaserver.ts3api.spellchecker.LevenshteinDistance;
 
@@ -19,12 +23,19 @@ public class CommandManager {
 
     private final CommandHistory commandHistory;
 
-    public CommandManager(Locale locale){
+    private Player player;
+
+    private Ts3Api parent;
+
+    public CommandManager(Locale locale, Player player, Ts3Api ts3Api){
         this.commandHistory = new CommandHistory();
         this.locale = locale;
+        this.player = player;
+        this.parent = ts3Api;
         baseCommands = new String[]{"paikea", "next", "play", "pause", "prev", "toggleautoplay", "info"};
-        easterEggs =  new String[]{this.locale.easterShit(),"ok google", "><", "nan", "no", "nope", "nan", "niet", "nein", "pong", "ping", "plop"};
-        complexCommands = new String[]{"help", "setVolume"};
+        easterEggs =  new String[]{this.locale.easterShit(),"ok google", "><", "nan", "no", "nope", "non", "nan", "niet", "nein", "pong", "ping", "plop"};
+        complexCommands = new String[]{"help", "setvolume", "challenge"};
+        //TODO Ajouter shǒushìlìng
     }
 
     private String preProcess(String cmd) throws NotACommandException {
@@ -65,7 +76,18 @@ public class CommandManager {
     }
 
     public String getUsage(String cmd){
-        return "Usage";
+        try {
+            return locale.getClass().getDeclaredMethod("usage"+cmd.toLowerCase(), (Class<?>[]) null).invoke(locale, (Object[]) null)
+                    +"\n"
+                    +  locale.getClass().getDeclaredMethod("desc"+cmd.toLowerCase(), (Class<?>[]) null).invoke(locale, (Object[]) null);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String execEaster(String cmd){
@@ -115,19 +137,37 @@ public class CommandManager {
                     rep = locale.paikeSong();
                     break;
                 case "next":
-                    rep = locale.undefinedBehavior();
+                    player.next();
+                    rep = locale.nowPlaying(player.getPlaying().getTitle(),player.getPlaying().getArtist());
+                    parent.changeName(player.getPlaying());
                     break;
                 case "prev":
-                    rep = locale.undefinedBehavior();
+                    try {
+                        player.prev();
+                        rep = locale.nowPlaying(player.getPlaying().getTitle(),player.getPlaying().getArtist());
+                    } catch (EmptyHistoryException e) {
+                        rep = locale.noPrev();
+                    }
+
                     break;
                 case "pause":
-                    rep = locale.undefinedBehavior();
+                    try {
+                        player.pause();
+                        rep = null;
+                    } catch (PauseException e) {
+                        rep = locale.errorPause();
+                    }
                     break;
                 case "play":
-                    rep = locale.undefinedBehavior();
+                    try {
+                        player.play();
+                        rep = locale.nowPlaying(player.getPlaying().getTitle(),player.getPlaying().getArtist());
+                    } catch (PlayException e) {
+                        rep = locale.errorPlay();
+                    }
                     break;
                 case "info":
-                    rep = locale.undefinedBehavior();
+                    rep = player.getInfos();
                     break;
                 default:
                     rep = locale.undefinedBehavior();
@@ -146,9 +186,29 @@ public class CommandManager {
         return rep;
     }
 
-    public String execComplex(String command) {
+    public String execComplex(String command, String caller) {
         try {
             String cmd = preProcess(command);
+            String[]args = cmd.split(" ");
+            switch (args[0]){
+                case "help":
+                    String toDetail = args[1];
+                    if (isHelpable("!"+toDetail)) return getUsage(toDetail);
+                    else return locale.notFound(toDetail);
+                case "setvolume":
+                    if (args.length != 2)
+                        return locale.usagesetvolume();
+                    player.setVolume(Double.parseDouble(args[1]));
+                    return player.getInfos();
+                case "challenge":
+                    if (args.length != 2)
+                        return locale.usagechallenge();
+                    String username = args[1];
+                    parent.initChallenge(caller, username);
+                    return "";
+
+
+            }
         } catch (NotACommandException ignored) {
             return "‼"; //Should not happend and be checked before !
         }
