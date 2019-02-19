@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.frosqh.botpaikeaserver'
-version = '0.1.2'
+version = '0.1.3'
 
 allprojects {
     repositories {
@@ -13,5 +13,5 @@ allprojects {
 }
 
 subprojects {
-    version = '0.1.2'
+    version = '0.1.3'
 }

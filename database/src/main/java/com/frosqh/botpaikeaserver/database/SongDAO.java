@@ -18,8 +18,7 @@ public class SongDAO extends DAO<Song> {
 
     @Override
     public Song find(int id) {
-        try {
-            Statement stm = connect.createStatement();
+        try (Statement stm = connect.createStatement()) {
             String select = getFindRequest(id);
             ResultSet result = stm.executeQuery(select);
             String title = result.getString("title");
@@ -37,8 +36,7 @@ public class SongDAO extends DAO<Song> {
 
     @Override
     public Song create(Song obj) {
-        try {
-            Statement stm = connect.createStatement();
+        try (Statement stm = connect.createStatement()){
             String select = getMaxRequest();
             ResultSet result = stm.executeQuery(select);
             int id = 1;
@@ -64,8 +62,7 @@ public class SongDAO extends DAO<Song> {
 
     @Override
     public Song update(Song obj) {
-        try {
-            Statement stm = connect.createStatement();
+        try (Statement stm = connect.createStatement()){
             String upd = "title = '"+obj.getTitle()+"', "
                     + "artist = '"+obj.getArtist()+"', "
                     + "localurl = '"+obj.getLocalurl()+"', "
@@ -83,8 +80,7 @@ public class SongDAO extends DAO<Song> {
 
     @Override
     public void delete(Song obj) {
-        try {
-            Statement stm = connect.createStatement();
+        try (Statement stm = connect.createStatement()){
             String del = getDeleteRequest(obj.getId());
             stm.executeUpdate(del);
             del = getDeleteForeignRequest("songbyplaylist",obj.getId());
@@ -98,8 +94,7 @@ public class SongDAO extends DAO<Song> {
     @Override
     public List<Song> getList() {
         List<Song> list = new ArrayList<>();
-        try {
-            Statement stm = connect.createStatement();
+        try (Statement stm = connect.createStatement()){
             String request = "SELECT id FROM "+getTableName();
             ResultSet res = stm.executeQuery(request);
             while (res.next())
@@ -115,7 +110,6 @@ public class SongDAO extends DAO<Song> {
     @Override
     public List<Song> filter(String... args) {
         String where;
-
         {
             StringBuilder whereB = new StringBuilder();
             boolean b = true;
@@ -125,10 +119,8 @@ public class SongDAO extends DAO<Song> {
             }
             where = whereB.toString().substring(0,whereB.lastIndexOf("A")-1);
         }
-
         List<Song> list = new ArrayList<>();
-        try {
-            Statement stm = connect.createStatement();
+        try (Statement stm = connect.createStatement()){
             String request = "SELECT id FROM "+getTableName()+" WHERE "+where;
             ResultSet result = stm.executeQuery(request);
             while (result.next())

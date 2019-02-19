@@ -82,6 +82,12 @@ public class DataBase {
                 e.printStackTrace();
             }
 
+            try {
+                stm.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
             //TODO Logging
         }
     }
