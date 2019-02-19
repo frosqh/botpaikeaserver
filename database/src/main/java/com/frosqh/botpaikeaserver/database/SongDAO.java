@@ -20,14 +20,15 @@ public class SongDAO extends DAO<Song> {
     public Song find(int id) {
         try (Statement stm = connect.createStatement()) {
             String select = getFindRequest(id);
-            ResultSet result = stm.executeQuery(select);
-            String title = result.getString("title");
-            String artist = result.getString("artist");
-            String localurl = result.getString("localurl");
-            String weburl = result.getString("weburl");
-            Song song = new Song(id, title, artist, localurl, weburl);
-            stm.close();
-            return song;
+            try (ResultSet result = stm.executeQuery(select)) {
+                String title = result.getString("title");
+                String artist = result.getString("artist");
+                String localurl = result.getString("localurl");
+                String weburl = result.getString("weburl");
+                Song song = new Song(id, title, artist, localurl, weburl);
+                stm.close();
+                return song;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,22 +39,27 @@ public class SongDAO extends DAO<Song> {
     public Song create(Song obj) {
         try (Statement stm = connect.createStatement()){
             String select = getMaxRequest();
-            ResultSet result = stm.executeQuery(select);
-            int id = 1;
-            if (result.next())
-                id = result.getInt(1)+ 1;
-            stm.close();
 
-            PreparedStatement prepare = connect.prepareStatement("INSERT INTO song (id, title, artist, localurl, weburl) VALUES (?,?,?,?,?)");
-            prepare.setString(2,obj.getTitle());
-            prepare.setString(3,obj.getArtist());
-            if (obj.getLocalurl()!=null)
-                prepare.setString(4,obj.getLocalurl());
-            if (obj.getWeburl()!=null)
-                prepare.setString(5,obj.getWeburl());
-            prepare.executeUpdate();
-            prepare.close();
-            return find(id);
+            int id = 1;
+            try (ResultSet result = stm.executeQuery(select)){
+                if (result.next())
+                    id = result.getInt(1)+ 1;
+                stm.close();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+
+            try  (PreparedStatement prepare = connect.prepareStatement("INSERT INTO song (id, title, artist, localurl, weburl) VALUES (?,?,?,?,?)")) {
+                prepare.setString(2, obj.getTitle());
+                prepare.setString(3, obj.getArtist());
+                if (obj.getLocalurl() != null)
+                    prepare.setString(4, obj.getLocalurl());
+                if (obj.getWeburl() != null)
+                    prepare.setString(5, obj.getWeburl());
+                prepare.executeUpdate();
+                prepare.close();
+                return find(id);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -96,11 +102,12 @@ public class SongDAO extends DAO<Song> {
         List<Song> list = new ArrayList<>();
         try (Statement stm = connect.createStatement()){
             String request = "SELECT id FROM "+getTableName();
-            ResultSet res = stm.executeQuery(request);
-            while (res.next())
-                list.add(find(res.getInt("id")));
-            stm.close();
-            return list;
+            try (ResultSet res = stm.executeQuery(request)) {
+                while (res.next())
+                    list.add(find(res.getInt("id")));
+                stm.close();
+                return list;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -122,11 +129,12 @@ public class SongDAO extends DAO<Song> {
         List<Song> list = new ArrayList<>();
         try (Statement stm = connect.createStatement()){
             String request = "SELECT id FROM "+getTableName()+" WHERE "+where;
-            ResultSet result = stm.executeQuery(request);
-            while (result.next())
-                list.add(find(result.getInt("id")));
-            stm.close();
-            return list;
+            try (ResultSet result = stm.executeQuery(request)) {
+                while (result.next())
+                    list.add(find(result.getInt("id")));
+                stm.close();
+                return list;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -31,20 +31,17 @@ public class Settings extends HashMap<String, String> {
         return instance;
     }
 
-    public void createSettings() throws Exception {
-        FileWriter propertiesWriter = new FileWriter("./server.properties");
-        BufferedWriter bufferedWriter = new BufferedWriter(propertiesWriter);
-        bufferedWriter.write(properties);
-        bufferedWriter.close();
-        propertiesWriter.close();
-        System.err.println("Settings à compléter");
-        System.exit(1);
+    public void createSettings() throws IOException {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("./server.properties"))) {
+            bufferedWriter.write(properties);
+            bufferedWriter.close();
+            System.err.println("Settings à compléter");
+            System.exit(1);
+        }
     }
 
     public void load() throws Exception {
-        try {
-            FileReader propertiesReader = new FileReader("./server.properties");
-            BufferedReader bufferedReader = new BufferedReader(propertiesReader);
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("./server.properties"))){
             String line;
             while ((line = bufferedReader.readLine())!=null){
                 if (!line.startsWith("#")){
@@ -57,14 +54,14 @@ public class Settings extends HashMap<String, String> {
                         switch (value){
                             case "fr_fr":
                                 locale = new FRFR();
+                                break;
                             default:
+                                System.out.println("No locale specified, fr_fr chosen");
                                 locale = new FRFR(); //TODO ENEN
                         }
                     } else put(key,value);
                 }
             }
-            bufferedReader.close();
-            propertiesReader.close();
         } catch (FileNotFoundException e) {
             createSettings();
         } catch (IOException e) {
